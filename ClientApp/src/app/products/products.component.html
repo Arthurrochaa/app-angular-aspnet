@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-4 ml-2 mt-4">
+    <h3 class="text-secondary">Produtos</h3>
+    <hr />
+  </div>
+</div>
+
+<div class="row justify-content-end">
+  <app-search [(searchModel)]="searchModel"></app-search>
+</div>
+
+<div class="row mt-2">
+  <div class="col-md-12">
+    <mat-table [dataSource]="products | listFilter: searchModel" class="mat-elevation-z8 table">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let product" class="mat-cell"> {{product.productID}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let product" class="mat-cell"> {{product.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+        <mat-cell *matCellDef="let product" class="mat-cell"> {{product.description}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="categoryName">
+        <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+        <mat-cell *matCellDef="let product" class="mat-cell"> {{product.category.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
+        <mat-cell *matCellDef="let product" class="mat-cell"> {{product.price | currency : 'BRL'}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let product" class="mat-cell" [routerLink]="['/edit-products', product.productID]"><a
+            mat-button>Editar</a> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let product" class="mat-cell" (click)="openConfirmDialog(product.productID)"> <a
+            mat-button color="warn">Excluir</a> </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </div>
+</div>
+
+<div class="row mb-4 mt-2">
+  <div class="col-md-12 d-flex justify-content-end">
+    <button mat-stroked-button class="mr-2" [routerLink]="['/categories']">Categorias</button>
+    <button mat-stroked-button [routerLink]="['/register-products']">Cadastrar produto</button>
+  </div>
+</div>

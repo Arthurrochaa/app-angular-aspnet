@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-10 mt-4">
+    <h3 class="text-secondary">Cadastrar categoria</h3>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <form class="col-md-10" [formGroup]="categoryService.categoryForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="form-row">
+      <mat-form-field class="col-4" appearance="outline">
+        <mat-label>Nome da categoria</mat-label>
+        <input matInput type="text" id="name" placeholder="Digite o nome da categoria" formControlName="name" required>
+        <mat-error *ngIf="categoryService.formControls.name.errors?.required">O campo é obrigatório</mat-error>
+        <mat-error *ngIf="categoryService.formControls.name.errors?.minlength">São necessários no minimo 3 caracteres.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row mt-2">
+      <div class="col-4 d-flex justify-content-end">
+        <button mat-raised-button class="mr-2" [routerLink]="['/categories']">Voltar para a lista</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!categoryService.categoryForm.valid">Cadastrar</button>
+      </div>
+    </div>
+  </form>
+</div>

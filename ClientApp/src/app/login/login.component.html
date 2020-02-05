@@ -1,0 +1,42 @@
+<div class="row justify-content-center h-100">
+  <mat-card class="col-6 align-self-center">
+    <div class="row justify-content-md-center mt-4">
+      <mat-card-header class="align-self-center">
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-subtitle>Insira suas credenciais para obter acesso</mat-card-subtitle>
+      </mat-card-header>
+    </div>
+
+    <div class="row justify-content-md-center mt-4">
+      <mat-card-content class="col-6">
+        <form [formGroup]="userService.loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <mat-form-field class="col-12">
+              <mat-label>Nome de usuário</mat-label>
+              <input matInput type="text" id="username" placeholder="Digite seu nome de usuário"
+                formControlName="username" required>
+              <mat-error *ngIf="userService.loginFormControls.username.errors?.required">O campo é obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-row">
+            <mat-form-field class="col-12">
+              <mat-label>Senha</mat-label>
+              <input matInput type="password" id="password" placeholder="Digite sua senha" formControlName="password"
+                required>
+              <mat-error *ngIf="userService.loginFormControls.password.errors?.required">O campo é obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-row">
+            <mat-error *ngIf="userService.invalidLogin">Nome de usuário ou senha inválidos.</mat-error>
+          </div>
+          <div class="form-row justify-content-md-end mt-4 mb-2">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!userService.loginForm.valid">Fazer
+              login</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

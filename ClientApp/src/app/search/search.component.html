@@ -1,0 +1,5 @@
+<mat-form-field floatLabel=never class="col-md-10">
+    <input matInput class="searching-customer" type="text" placeholder="Pesquisar" [ngModel]="searchModel"
+        (ngModelChange)="updateSearchModel($event)">
+</mat-form-field>
+<i class="material-icons icon-search">search</i>

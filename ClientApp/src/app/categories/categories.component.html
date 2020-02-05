@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-4 ml-2 mt-4">
+    <h3 class="text-secondary">Categorias</h3>
+    <hr />
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    <mat-table [dataSource]="categories" class="mat-elevation-z8 table">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.categoryID}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let category" class="mat-cell"><button mat-button [routerLink]="['/edit-category', category.categoryID]">Editar</button> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let category" class="mat-cell"> <button mat-button color="warn" (click)="openConfirmDialog(category.categoryID)">Excluir</button> </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </div>
+</div>
+
+<div class="row mt-4 mb-4">
+  <div class="col-md-12 d-flex justify-content-end">
+    <button mat-stroked-button [routerLink]="['/register-category']">Nova categoria</button>
+  </div>
+</div>

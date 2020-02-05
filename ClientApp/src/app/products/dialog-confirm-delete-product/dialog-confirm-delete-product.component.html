@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="text-danger">Excluir produto</h1>
+<div mat-dialog-content>
+  <p>Tem certeza que deseja remover esse produto?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancelar</button>
+  <button mat-button class="text-danger" (click)="deleteProduct()">Excluir</button>
+</div>

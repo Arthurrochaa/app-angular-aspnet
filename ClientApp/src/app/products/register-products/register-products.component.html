@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-10 mt-4">
+    <h3 class="text-secondary">Cadastrar produto</h3>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <form class="col-md-10" [formGroup]="productService.productForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="form-row">
+      <mat-form-field class="col-6" appearance="outline">
+        <mat-label>Nome do produto</mat-label>
+        <input matInput type="text" id="name" placeholder="Digite o nome do produto" formControlName="name" required>
+        <mat-error *ngIf="productService.formControls.name.errors?.required">O campo é obrigatório</mat-error>
+        <mat-error *ngIf="productService.formControls.name.errors?.minlength">São necessários no minimo 3 caracteres.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-3" appearance="outline">
+        <mat-label>Preço</mat-label>
+        <input matInput type="number" placeholder="R$0.00" formControlName="price" required />
+        <mat-error *ngIf="productService.formControls.price.errors?.required">O campo é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-3" appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoryID" placeholder="Seleciona a categoria" required>
+          <mat-option *ngFor="let c of categories" [value]="c.categoryID">{{c.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="productService.formControls.categoryID.errors?.required">O campo é obrigatório</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field class="col-8" appearance="outline">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput style="height: 100px" formControlName="description" required></textarea>
+        <mat-error *ngIf="productService.formControls.description.errors?.required">O campo é obrigatório</mat-error>
+        <mat-error *ngIf="productService.formControls.description.errors?.minlength">São necessários no minimo 5 caracteres.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <div class="col-8 d-flex justify-content-end">
+        <button mat-raised-button class="mr-2" [routerLink]="['/products']">Voltar para a lista</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!productService.productForm.valid">Cadastrar</button>
+      </div>
+    </div>
+  </form>
+</div>

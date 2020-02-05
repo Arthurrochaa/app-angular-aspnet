@@ -1,0 +1,51 @@
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.table {
+  box-shadow: none;
+}
+
+.mat-cell {
+  vertical-align: middle;
+  padding: 2px;
+  margin-right: 20px;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.green {
+  background-color: #2E7D32;
+  color: white;
+}
+
+.mat-simple-snackbar-action {
+  color: white;
+}
+
+.border-red{
+  border: 1px solid red;
+}
+
+.mat-table {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.icon-search{
+  font-size: large;
+}
